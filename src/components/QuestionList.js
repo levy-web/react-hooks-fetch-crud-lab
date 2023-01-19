@@ -1,24 +1,15 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import QuestionItem from "./QuestionItem";
-
-
-
-function QuestionList({queries ,onUpdateAnswer, onDeleteQuestion}) {
-  console.log(onDeleteQuestion)
-
-  const itemList = queries.map((item)=>{
-    console.log(item.id)
-   return <QuestionItem onUpdateAnswer={onUpdateAnswer} onDeleteQuestion={onDeleteQuestion} key={item.id} question={item} />
-  })
-
-
-
-
+function QuestionList({questions,API,setQuestions}) {
+  const questionsList = questions.map((question)=>(
+    <QuestionItem question={question} API={API} questions={questions} setQuestions={setQuestions} />
+  ))
   return (
     <section>
       <h1>Quiz Questions</h1>
-      <ul>{/* display QuestionItem components here after fetching */}
-      {itemList}
+      <ul>
+        {/* display QuestionItem components here after fetching */}
+        {questionsList}
       </ul>
     </section>
   );
